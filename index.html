@@ -1,1 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>HIMA Knowledge Assistant</title>
 
+<style>
+
+body{
+margin:0;
+font-family:Segoe UI;
+background:linear-gradient(135deg,#0d47a1,#1976d2);
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.container{
+width:380px;
+background:white;
+border-radius:18px;
+overflow:hidden;
+box-shadow:0 10px 40px rgba(0,0,0,.3);
+display:flex;
+flex-direction:column;
+}
+
+.header{
+background:#0d47a1;
+color:white;
+padding:15px;
+text-align:center;
+font-weight:bold;
+}
+
+.chat{
+flex:1;
+padding:15px;
+overflow:auto;
+background:#f5f5f5;
+}
+
+.bot,.user{
+padding:10px;
+border-radius:12px;
+margin-bottom:10px;
+max-width:80%;
+font-size:14px;
+}
+
+.bot{
+background:white;
+}
+
+.user{
+background:#bbdefb;
+margin-left:auto;
+}
+
+.input{
+display:flex;
+padding:10px;
+border-top:1px solid #ddd;
+}
+
+input{
+flex:1;
+padding:10px;
+border-radius:20px;
+border:1px solid #ccc;
+outline:none;
+}
+
+button{
+margin-left:8px;
+border:none;
+background:#0d47a1;
+color:white;
+border-radius:50%;
+width:40px;
+height:40px;
+cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+HIMA Knowledge Assistant
+</div>
+
+<div class="chat" id="chat">
+<div class="bot">Halo 👋 Saya AI Knowledge Assistant HIMA.  
+Silakan tanyakan SOP, sponsor, atau pengalaman kegiatan.</div>
+</div>
+
+<div class="input">
+<input id="text" placeholder="Tulis pertanyaan...">
+<button onclick="send()">➤</button>
+</div>
+
+</div>
+
+<script>
+
+function send(){
+
+let q=document.getElementById("text").value;
+if(q=="")return;
+
+chat.innerHTML+=`<div class='user'>${q}</div>`;
+
+let a="Silakan cek repository KM.";
+
+if(q.toLowerCase().includes("sponsor"))
+a="Strategi sponsor: hubungi alumni + kirim proposal H-14.";
+
+if(q.toLowerCase().includes("sop"))
+a="SOP peminjaman barang tersedia di folder Google Drive HIMA.";
+
+if(q.toLowerCase().includes("event"))
+a="Lesson learned: vendor sound sering telat, booking minimal H-7.";
+
+if(q.toLowerCase().includes("proposal"))
+a="Template proposal ada di Knowledge Repository.";
+
+setTimeout(()=>{
+chat.innerHTML+=`<div class='bot'>${a}</div>`;
+chat.scrollTop=chat.scrollHeight;
+},600);
+
+document.getElementById("text").value="";
+
+}
+
+</script>
+
+</body>
+</html>
